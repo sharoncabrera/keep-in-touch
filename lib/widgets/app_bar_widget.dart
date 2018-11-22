@@ -6,7 +6,6 @@ AppBar appBar({bool isChatMenu = false}){
     title: Text("Keep in touch"),
     backgroundColor: mainGreenColor,
     automaticallyImplyLeading: true,
-    leading: isChatMenu? IconButton(icon: Icon(Icons.menu, color: Colors.white,), onPressed: null): null,
     centerTitle: true,
     actions: <Widget>[
       isChatMenu?
