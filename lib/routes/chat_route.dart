@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:keep_in_touch/widgets/app_bar_widget.dart';
+import 'package:keep_in_touch/widgets/bottom_app_bar_widget.dart';
 
 
 class ChatRoute extends StatefulWidget {
@@ -11,36 +13,17 @@ class _ChatRouteState extends State<ChatRoute> {
     double height = MediaQuery.of(context).size.height;
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
-          title: Text("Keep in touch"),
-          automaticallyImplyLeading: true,
-          centerTitle: true,
-        ),
+        appBar: appBar(),
         body: Container(
           height: height - 40.0,
           color: Colors.white,
           child: ListView(
             children: <Widget>[
-              Text("El teclado va maaaaaaaaaal!!!!!!")
+              Text("Salió de rumba"),
             ],
           ),
         ),
-        bottomNavigationBar: BottomAppBar(
-          color: Colors.blue,
-          elevation: 1.0,
-          child: Container(
-            height: 40.0,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                Icon(Icons.people, size: 32.0, color: Colors.white,),
-                Container(height: 35.0,child: Text("|", style:TextStyle(fontSize: 30.0, color: Colors.white),),),
-                Icon(Icons.chat, size: 30.0, color: Colors.white,)
-              ],
-
-            ),
-          ),
-        ),
+        bottomNavigationBar: bottomAppBar(context: context),
       ),
     );
   }
