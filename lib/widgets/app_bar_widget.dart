@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:keep_in_touch/utils/theme_utils.dart';
 
 AppBar appBar({bool isChatMenu = false}){
   return AppBar(
     title: Text("Keep in touch"),
+    backgroundColor: mainGreenColor,
     automaticallyImplyLeading: true,
     leading: isChatMenu? IconButton(icon: Icon(Icons.menu, color: Colors.white,), onPressed: null): null,
     centerTitle: true,

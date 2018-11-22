@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:keep_in_touch/utils/theme_utils.dart';
 
 Widget bottomAppBar({BuildContext context}) {
   return BottomAppBar(
-    color: Colors.blue,
+    color: mainGreenColor,
     elevation: 1.0,
     child: Container(
       height: 40.0,
