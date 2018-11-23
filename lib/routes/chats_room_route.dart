@@ -2,12 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:keep_in_touch/widgets/app_bar_widget.dart';
 import 'package:keep_in_touch/widgets/bottom_app_bar_widget.dart';
 
-
-class ChatRoute extends StatefulWidget {
+class ChatRoomRoute extends StatefulWidget {
   @override
-  _ChatRouteState createState() => _ChatRouteState();
+  _ChatRoomRouteState createState() => _ChatRoomRouteState();
 }
-class _ChatRouteState extends State<ChatRoute> {
+class _ChatRoomRouteState extends State<ChatRoomRoute> {
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -19,7 +18,7 @@ class _ChatRouteState extends State<ChatRoute> {
           color: Colors.white,
           child: ListView(
             children: <Widget>[
-              Text("CHAT"),
+              Text("CHAT ROOM"),
             ],
           ),
         ),
