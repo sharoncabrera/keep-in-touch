@@ -12,7 +12,7 @@ class _ChatRoomRouteState extends State<ChatRoomRoute> {
     double height = MediaQuery.of(context).size.height;
     return SafeArea(
       child: Scaffold(
-        appBar: appBar(),
+        appBar: appBar(context: context),
         body: Container(
           height: height - 40.0,
           color: Colors.white,

@@ -21,7 +21,7 @@ class _MenuChatRouteState extends State<MenuChatRoute> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appBar(isChatMenu: true, isleading: true),
+      appBar: appBar(isChatMenu: true, isleading: true, context: context),
       drawer: Drawer(
         child: ListView(
           children: <Widget>[
