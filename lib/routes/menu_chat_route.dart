@@ -8,7 +8,7 @@ import 'package:keep_in_touch/utils/theme_utils.dart';
 import 'package:keep_in_touch/widgets/app_bar_widget.dart';
 import 'package:keep_in_touch/widgets/bottom_app_bar_widget.dart';
 import 'package:keep_in_touch/widgets/friends_widget.dart';
-
+import 'package:giffy_dialog/giffy_dialog.dart';
 class MenuChatRoute extends StatefulWidget {
   MenuChatRoute({Key key, this.title}) : super(key: key);
 
@@ -50,7 +50,9 @@ class _MenuChatRouteState extends State<MenuChatRoute> {
             ListTile(
               title: Text("Logout"),
               leading: Icon(Icons.exit_to_app),
-              onTap: ()=> exit(0),
+              onTap: (){
+                exitDialog(context);
+              },
             ),
           ],
         ),
@@ -62,7 +64,7 @@ class _MenuChatRouteState extends State<MenuChatRoute> {
           ListView.builder(
             itemCount: mocksUsers.length,
             itemBuilder: (context, index) {
-              return friendWidget(index);
+              return friendWidget(index, context);
             },
           )
           ),

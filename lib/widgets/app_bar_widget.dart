@@ -11,7 +11,7 @@ AppBar appBar({bool isChatMenu = false, isleading = false, BuildContext context}
     centerTitle: true,
     actions: <Widget>[
       isChatMenu?
-      IconButton(icon: Icon(Icons.search), onPressed: (){navigateToChat(context);}):
+      IconButton(icon: Icon(Icons.search), onPressed: (){null;}):
       IconButton(icon: Icon(Icons.group_add),
           onPressed: (){print("Hola");}),
 
