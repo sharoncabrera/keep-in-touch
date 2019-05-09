@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:keep_in_touch/utils/theme_utils.dart';
 import 'package:keep_in_touch/widgets/app_bar_widget.dart';
 import 'package:keep_in_touch/widgets/bottom_app_bar_widget.dart';
 
@@ -13,6 +14,7 @@ class _ChatRoomRouteState extends State<ChatRoomRoute> {
     return SafeArea(
       child: Scaffold(
         appBar: appBar(context: context),
+        backgroundColor: greyBackgroundColor,
         body: Container(
           height: height - 40.0,
           color: Colors.white,

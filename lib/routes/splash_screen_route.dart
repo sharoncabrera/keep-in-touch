@@ -8,29 +8,29 @@ class SplashScreenRoute extends StatefulWidget {
 }
 
 class _SplashScreenRouteState extends State<SplashScreenRoute> {
-
   @override
   void initState() {
     super.initState();
 
     // The delay fixes it
-    Future.delayed(Duration(milliseconds: 100)).then((_) {
-      navigateToMenuChat(context);
+    Future.delayed(Duration(milliseconds: 1000)).then((_) {
+      //navigateToMenuChat(context);
+      navigateToLogin(context);
     });
-
   }
 
   @override
   void dispose() {
     super.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
-
     return Container(
+      color: Colors.blue,
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 60.0),
-        child: Icon(Icons.ac_unit)),
-      );
+          padding: const EdgeInsets.symmetric(horizontal: 60.0),
+          child: Icon(Icons.ac_unit)),
+    );
   }
 }

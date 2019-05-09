@@ -20,6 +20,7 @@ class ChatWindow extends State<ChatRoute> with TickerProviderStateMixin {
   Widget build(BuildContext ctx) {
     return new Scaffold(
       appBar: appBar(isleading: true, context: context),
+      backgroundColor: greyBackgroundColor,
       body: new Column(children: <Widget>[
         new Flexible(
             child: new ListView.builder(
@@ -70,7 +71,7 @@ class ChatWindow extends State<ChatRoute> with TickerProviderStateMixin {
                           : null
                   )
                       : new IconButton(
-                    icon: new Icon(Icons.message),
+                    icon: new Icon(Icons.send),
                     onPressed: _isWriting
                         ? () => _submitMsg(_textController.text)
                         : null,
@@ -121,6 +122,7 @@ class Msg extends StatelessWidget {
 
   @override
   Widget build(BuildContext ctx) {
+
     return SizeTransition(
       sizeFactor: CurvedAnimation(
           parent: animationController, curve: Curves.easeOut),
