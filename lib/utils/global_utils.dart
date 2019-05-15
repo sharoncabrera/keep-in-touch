@@ -1,11 +1,10 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-//import 'package:giffy_dialog/giffy_dialog.dart';
+import 'package:keep_in_touch/classes/User.dart';
 import 'package:keep_in_touch/translations.dart';
 import 'package:keep_in_touch/utils/authentication_utils.dart';
-import 'package:path/path.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+SharedPreferences prefs;
 
 double getScreenHeight(BuildContext context) {
   return MediaQuery.of(context).size.height;
@@ -67,3 +66,11 @@ exitDialog({BuildContext context, String title, String message}) {
             fontSize: 22.0,
             fontWeight: FontWeight.w600)),
 * */
+
+void readLocal(User user) async {
+  prefs = await SharedPreferences.getInstance();
+  user.id = prefs.getString('id') ?? '';
+  user.nickname = prefs.getString('nickname') ?? '';
+  user.aboutMe = prefs.getString('aboutMe') ?? '';
+  user.photoUrl = prefs.getString('photoUrl') ?? '';
+}

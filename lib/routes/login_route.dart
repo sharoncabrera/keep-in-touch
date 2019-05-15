@@ -5,10 +5,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:keep_in_touch/classes/User.dart';
+import 'package:keep_in_touch/utils/app_state.dart';
 import 'package:keep_in_touch/utils/authentication_utils.dart';
 import 'package:keep_in_touch/utils/navigation.dart';
 import 'package:keep_in_touch/utils/theme_utils.dart';
-import 'package:keep_in_touch/widgets/app_bar_widget.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
@@ -26,9 +26,11 @@ class LoginScreenState extends State<LoginScreen> {
   bool isLoading = false;
   bool isLoggedIn = false;
   FirebaseUser currentUser;
+  AppStateContainerState container;
 
   @override
   void initState() {
+    user = User("-1", "", "", "", null);
     super.initState();
 
     isSignedIn();
@@ -93,13 +95,26 @@ class LoginScreenState extends State<LoginScreen> {
         await prefs.setString('id', currentUser.uid);
         await prefs.setString('nickname', currentUser.displayName);
         await prefs.setString('photoUrl', currentUser.photoUrl);
+
+        //Adding user information to user state
+        user.id = currentUser.uid;
+        user.nickname = currentUser.displayName;
+        user.photoUrl = currentUser.photoUrl;
       } else {
         // Write data to local
         await prefs.setString('id', documents[0]['id']);
         await prefs.setString('nickname', documents[0]['nickname']);
         await prefs.setString('photoUrl', documents[0]['photoUrl']);
         await prefs.setString('aboutMe', documents[0]['aboutMe']);
+
+        //Adding user information to user state
+        user.id = documents[0]['id'];
+        user.nickname = documents[0]['nickname'];
+        user.photoUrl = documents[0]['photoUrl'];
+        user.aboutMe = documents[0]['aboutMe'];
       }
+      container.updateAppUser(user: user);
+
       Fluttertoast.showToast(msg: "Sign in success");
       this.setState(() {
         isLoading = false;
@@ -152,6 +167,7 @@ class LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+    container = AppStateContainer.of(context);
     return _getBody(context);
   }
 }

@@ -1,10 +1,10 @@
-import 'dart:io';
-
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:keep_in_touch/routes/main_menu.dart';
 import 'package:keep_in_touch/utils/global_utils.dart';
-import 'package:keep_in_touch/utils/mock_data.dart';
+import 'package:keep_in_touch/utils/app_state.dart';
+import 'package:keep_in_touch/utils/navigation.dart';
 import 'package:keep_in_touch/utils/theme_utils.dart';
 import 'package:keep_in_touch/widgets/app_bar_widget.dart';
 import 'package:keep_in_touch/widgets/friends_widget.dart';
@@ -19,12 +19,22 @@ class MenuChatRoute extends StatefulWidget {
 }
 
 class _MenuChatRouteState extends State<MenuChatRoute> {
+  AppStateContainerState container;
+
   @override
   void initState() {
     super.initState();
   }
 
-  /* Widget getFriendsList() {
+  Widget buildItem(BuildContext context, DocumentSnapshot document) {
+    if (document['id'] == container.appState.user.id) {
+      return Container();
+    } else {
+      return friendWidget(context, document);
+    }
+  }
+
+  Widget getFriendsList() {
     return Container(
       child: StreamBuilder(
         stream: Firestore.instance.collection('users').snapshots(),
@@ -32,20 +42,21 @@ class _MenuChatRouteState extends State<MenuChatRoute> {
           if (!snapshot.hasData) {
             return Center(
               child: CircularProgressIndicator(
-                valueColor: AlwaysStoppedAnimation<Color>(themeColor),
+                valueColor: AlwaysStoppedAnimation<Color>(Colors.amber),
               ),
             );
           } else {
             return ListView.builder(
               padding: EdgeInsets.all(10.0),
-              itemBuilder: (context, index) => buildItem(context, snapshot.data.documents[index]),
+              itemBuilder: (context, index) =>
+                  buildItem(context, snapshot.data.documents[index]),
               itemCount: snapshot.data.documents.length,
             );
           }
         },
       ),
     );
-  }*/
+  }
 
   Future<bool> onBackPress() {
     exitDialog();
@@ -65,12 +76,12 @@ class _MenuChatRouteState extends State<MenuChatRoute> {
                   decoration: BoxDecoration(
                     color: greyBottomLettersColor,
                   ),
-                  accountName: Text("Sharon Cabrera"),
-                  accountEmail: Text("Test@test.com"),
+                  accountName: Text(container.appState.user.nickname),
+                  accountEmail: Text(container.appState.user.id),
                   currentAccountPicture: CircleAvatar(
                     backgroundColor: mainBlueColor,
-                    backgroundImage: NetworkImage(
-                        "http://pluspng.com/img-png/kawaii-transparent-png-kawaii-kitty-i-by-riair-d41q2nj-png-501.png"),
+                    backgroundImage:
+                        NetworkImage(container.appState.user.photoUrl),
                   ),
                 ),
                 Opacity(
@@ -104,20 +115,23 @@ class _MenuChatRouteState extends State<MenuChatRoute> {
               ],
             ),
           ),
-          body: Center(
-            child: Container(
-                child: ListView.builder(
-              itemCount: mocksUsers.length,
-              itemBuilder: (context, index) {
-                return friendWidget(index, context);
-              },
-            )),
-          ),
+          body: getFriendsList(),
+
+//          Center(
+//            child: Container(
+//                child: ListView.builder(
+//              itemCount: mocksUsers.length,
+//              itemBuilder: (context, index) {
+//                return friendWidget(index, context);
+//              },
+//            )),
+//          ),
         ),
       );
 
   @override
   Widget build(BuildContext context) {
+    container = AppStateContainer.of(context);
     return MainMenu(_getBody(context));
   }
 }
