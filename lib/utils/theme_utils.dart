@@ -21,6 +21,13 @@ final TextStyle mainText = TextStyle(
     fontWeight: FontWeight.w700,
     color: strongGreyColor);
 
+final TextStyle mainText2 = TextStyle(
+    fontFamily: 'Lato',
+    fontStyle: FontStyle.normal,
+    fontSize: 16.0,
+    fontWeight: FontWeight.w700,
+    color: Colors.white);
+
 final TextStyle regularText = TextStyle(
     fontFamily: 'Lato',
     fontStyle: FontStyle.normal,
@@ -34,3 +41,24 @@ final TextStyle hintTextStyle = TextStyle(
     fontSize: 12.0,
     fontWeight: FontWeight.normal,
     color: greyBottomLettersColor);
+
+final TextStyle chatText = TextStyle(
+    fontFamily: 'Lato',
+    fontStyle: FontStyle.normal,
+    fontSize: 15.0,
+    fontWeight: FontWeight.w500,
+    color: strongGreyColor);
+
+final TextStyle chatText2 = TextStyle(
+    fontFamily: 'Lato',
+    fontStyle: FontStyle.normal,
+    fontSize: 15.0,
+    fontWeight: FontWeight.w500,
+    color: Colors.white);
+
+final TextStyle deleteUserStyle = TextStyle(
+    fontFamily: 'Lato',
+    fontStyle: FontStyle.normal,
+    fontSize: 15.0,
+    fontWeight: FontWeight.w500,
+    color: Colors.redAccent);

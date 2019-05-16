@@ -15,3 +15,9 @@ Future<Null> handleSignOut(BuildContext context) async {
 
   navigateToLogin(context);
 }
+
+Future<Null> handleDelete(BuildContext context) async {}
+
+Future<Null> deleteUserWithGoogle(FirebaseUser user) async {
+  await user.delete();
+}

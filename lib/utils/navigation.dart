@@ -5,22 +5,36 @@ import 'package:keep_in_touch/routes/login_route.dart';
 import 'package:keep_in_touch/routes/menu_chat_route.dart';
 import 'package:keep_in_touch/routes/settings_route.dart';
 
-navigateToChat(BuildContext context) {
+navigateToChat(BuildContext context, document) {
+//  Navigator.push(
+//    context,
+//    MaterialPageRoute(
+//        builder: (context) => ChatRoute(
+//              peerId: null,
+//              peerAvatar: null,
+//            )),
+//  );
+
   Navigator.push(
     context,
-    MaterialPageRoute(builder: (context) => ChatRoute()),
+    MaterialPageRoute(
+      builder: (context) => ChatRoute(
+            peerId: document.documentID,
+            peerAvatar: document['photoUrl'],
+          ),
+    ),
   );
 }
 
 navigateToChatRoom(BuildContext context) {
-  Navigator.push(
+  Navigator.pushReplacement(
     context,
     MaterialPageRoute(builder: (context) => ChatRoomRoute()),
   );
 }
 
 navigateToMenuChat(BuildContext context) {
-  Navigator.push(
+  Navigator.pushReplacement(
     context,
     MaterialPageRoute(builder: (context) => MenuChatRoute()),
   );

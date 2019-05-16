@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:keep_in_touch/routes/main_menu.dart';
@@ -10,9 +9,7 @@ import 'package:keep_in_touch/widgets/app_bar_widget.dart';
 import 'package:keep_in_touch/widgets/friends_widget.dart';
 
 class MenuChatRoute extends StatefulWidget {
-  MenuChatRoute({Key key, this.title}) : super(key: key);
-
-  final String title;
+  MenuChatRoute({Key key}) : super(key: key);
 
   @override
   _MenuChatRouteState createState() => _MenuChatRouteState();
@@ -71,28 +68,18 @@ class _MenuChatRouteState extends State<MenuChatRoute> {
           drawer: Drawer(
             elevation: 0.0,
             child: ListView(
+              shrinkWrap: true,
               children: <Widget>[
                 UserAccountsDrawerHeader(
                   decoration: BoxDecoration(
                     color: greyBottomLettersColor,
                   ),
                   accountName: Text(container.appState.user.nickname),
-                  accountEmail:
-                      Text(container.appState.user.aboutMe) ?? Text(""),
                   currentAccountPicture: CircleAvatar(
-                    backgroundColor: mainBlueColor,
                     backgroundImage:
                         NetworkImage(container.appState.user.photoUrl),
                   ),
-                ),
-                Opacity(
-                  opacity: 0.0,
-                  child: Container(
-                    height: getScreenHeight(context) - 500, //300
-                  ),
-                ),
-                Divider(
-                  height: 3.0,
+                  accountEmail: null,
                 ),
                 ListTile(
                   title: Text("New Group"),
@@ -106,6 +93,9 @@ class _MenuChatRouteState extends State<MenuChatRoute> {
                     //  exitDialog(context);
                   },
                 ),
+                Divider(
+                  height: 5.0,
+                ),
                 ListTile(
                   title: Text("Logout"),
                   leading: Icon(Icons.exit_to_app),
@@ -115,6 +105,7 @@ class _MenuChatRouteState extends State<MenuChatRoute> {
                   },
                 ),
               ],
+              addRepaintBoundaries: false,
             ),
           ),
           body: getFriendsList(),
@@ -124,6 +115,6 @@ class _MenuChatRouteState extends State<MenuChatRoute> {
   @override
   Widget build(BuildContext context) {
     container = AppStateContainer.of(context);
-    return MainMenu(_getBody(context));
+    return MainMenu(_getBody(context), 'MenuChatRoute');
   }
 }

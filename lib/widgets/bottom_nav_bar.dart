@@ -1,6 +1,7 @@
 import 'package:circular_bottom_navigation/tab_item.dart';
 import 'package:flutter/material.dart';
 import 'package:circular_bottom_navigation/circular_bottom_navigation.dart';
+import 'package:keep_in_touch/utils/theme_utils.dart';
 
 class BottomNavBar extends StatefulWidget {
   BottomNavBar({Key key, this.title}) : super(key: key);
@@ -18,7 +19,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
 
   List<TabItem> tabItems = List.of([
     new TabItem(Icons.home, "Home", Colors.blue),
-    new TabItem(Icons.notifications, "Notifications", Colors.cyan),
+    new TabItem(Icons.message, "Chat Room", Colors.blue),
   ]);
 
   CircularBottomNavigationController _navigationController;
@@ -34,7 +35,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
       tabItems,
       controller: _navigationController,
       barHeight: bottomNavBarHeight,
-      barBackgroundColor: Colors.white,
+      barBackgroundColor: greyBackgroundColor,
       animationDuration: Duration(milliseconds: 300),
       selectedCallback: (int selectedPos) {
         setState(() {

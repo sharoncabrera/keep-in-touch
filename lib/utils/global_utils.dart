@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:keep_in_touch/classes/User.dart';
+
 import 'package:keep_in_touch/translations.dart';
 import 'package:keep_in_touch/utils/authentication_utils.dart';
 import 'package:shared_preferences/shared_preferences.dart';

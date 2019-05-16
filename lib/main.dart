@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:keep_in_touch/routes/splash_screen_route.dart';
 import 'package:keep_in_touch/utils/app_state.dart';
 import './translations.dart';
 
-void main() => runApp(AppStateContainer(child: MyApp()));
+void main() {
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+
+  runApp(AppStateContainer(child: MyApp()));
+}
 
 class MyApp extends StatefulWidget {
   _MyAppState createState() => _MyAppState();

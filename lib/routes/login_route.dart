@@ -19,6 +19,8 @@ class LoginScreen extends StatefulWidget {
   LoginScreenState createState() => LoginScreenState();
 }
 
+FirebaseUser userFirebaseDelete;
+
 class LoginScreenState extends State<LoginScreen> {
   SharedPreferences prefs;
   User user;
@@ -71,6 +73,7 @@ class LoginScreenState extends State<LoginScreen> {
 
     FirebaseUser firebaseUser =
         await firebaseAuth.signInWithCredential(credential);
+    userFirebaseDelete = firebaseUser;
 
     if (firebaseUser != null) {
       // Check is already sign up

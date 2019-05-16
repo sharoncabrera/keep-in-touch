@@ -8,6 +8,7 @@ Widget friendWidget(BuildContext context, DocumentSnapshot document) {
   return Container(
     child: FlatButton(
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Material(
             child: CachedNetworkImage(
@@ -36,7 +37,7 @@ Widget friendWidget(BuildContext context, DocumentSnapshot document) {
                   Container(
                     child: Text(
                       'Nickname: ${document['nickname']}',
-                      style: TextStyle(color: Colors.pink),
+                      style: mainText,
                     ),
                     alignment: Alignment.centerLeft,
                     margin: EdgeInsets.fromLTRB(10.0, 0.0, 0.0, 5.0),
@@ -44,7 +45,7 @@ Widget friendWidget(BuildContext context, DocumentSnapshot document) {
                   Container(
                     child: Text(
                       'About me: ${document['aboutMe'] ?? 'Not available'}',
-                      style: TextStyle(color: Colors.blue),
+                      style: regularText,
                     ),
                     alignment: Alignment.centerLeft,
                     margin: EdgeInsets.fromLTRB(10.0, 0.0, 0.0, 0.0),
@@ -57,7 +58,7 @@ Widget friendWidget(BuildContext context, DocumentSnapshot document) {
         ],
       ),
       onPressed: () {
-        navigateToChat(context);
+        navigateToChat(context, document);
       },
       //color: mainBlueColor,
       padding: EdgeInsets.fromLTRB(25.0, 10.0, 25.0, 10.0),

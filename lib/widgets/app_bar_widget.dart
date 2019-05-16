@@ -44,6 +44,25 @@ AppBar appBar(
   );
 }
 
+AppBar appBarModal({BuildContext context, String title}) {
+  return AppBar(
+    iconTheme: IconThemeData(color: bottomAppBarColor),
+    elevation: 0.2,
+    title: Text(
+      title,
+      style: TextStyle(color: strongGreyColor),
+    ),
+    backgroundColor: Colors.white,
+    leading: IconButton(
+      icon: Icon(Icons.clear),
+      onPressed: () {
+        popNavigation(context);
+      },
+    ),
+    centerTitle: true,
+  );
+}
+
 sliverAppBar(AppStateContainerState container) {
   return SliverAppBar(
     elevation: 0.2,

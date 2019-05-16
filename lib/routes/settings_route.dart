@@ -2,10 +2,12 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:keep_in_touch/classes/User.dart';
-import 'package:keep_in_touch/routes/main_menu.dart';
+import 'package:keep_in_touch/routes/login_route.dart';
+import 'package:keep_in_touch/utils/authentication_utils.dart';
 import 'package:keep_in_touch/utils/global_utils.dart';
 import 'package:keep_in_touch/utils/app_state.dart';
 import 'package:keep_in_touch/utils/theme_utils.dart';
@@ -202,6 +204,19 @@ class _SettingsRouteState extends State<SettingsRoute> {
     );
   }
 
+  deleteAccount() {
+    deleteUserWithGoogle(userFirebaseDelete).whenComplete(
+      () => setState(
+            () {
+              userFirebaseDelete = null;
+            },
+          ),
+    );
+
+    Fluttertoast.showToast(msg: 'User Account deleted');
+    handleSignOut(context);
+  }
+
   void readLocal() async {
     prefs = await SharedPreferences.getInstance();
     user.id = prefs.getString('id') ?? '';
@@ -221,7 +236,7 @@ class _SettingsRouteState extends State<SettingsRoute> {
     readLocal();
 
     return Scaffold(
-      appBar: appBar(isleading: true, isChatMenu: false, context: context),
+      appBar: appBarModal(context: context, title: 'Settings'),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -281,7 +296,7 @@ class _SettingsRouteState extends State<SettingsRoute> {
                           IconButton(
                             icon: Icon(
                               Icons.camera_alt,
-                              color: Colors.green,
+                              color: Colors.blue,
                             ),
                             onPressed: getImage,
                             padding: EdgeInsets.all(30.0),
@@ -334,17 +349,25 @@ class _SettingsRouteState extends State<SettingsRoute> {
               margin: EdgeInsets.only(
                   left: 20.0, bottom: 5.0, top: 3.0, right: 20.0),
             ),
+            FlatButton(
+              onPressed: () {
+                deleteAccount();
+              },
+              child: Text(
+                "Remove Data and Account",
+                style: deleteUserStyle,
+              ),
+            ),
 
             // Button
-            InkWell(
+            GestureDetector(
               onTap: handleUpdateData,
-              splashColor: Colors.orange,
               child: Center(
                 child: Container(
                   width: 300.0,
                   height: 55.0,
                   decoration: ShapeDecoration(
-                    color: Colors.green,
+                    color: Colors.blue,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.all(
                         Radius.circular(50.0),
@@ -357,7 +380,7 @@ class _SettingsRouteState extends State<SettingsRoute> {
                       'Save Changes',
                       textAlign: TextAlign.center,
                       softWrap: true,
-                      style: mainText,
+                      style: mainText2,
                     ),
                   ),
                   margin: EdgeInsets.only(top: 50.0, bottom: 50.0),
@@ -373,6 +396,6 @@ class _SettingsRouteState extends State<SettingsRoute> {
   @override
   Widget build(BuildContext context) {
     container = AppStateContainer.of(context);
-    return MainMenu(_getBody());
+    return _getBody();
   }
 }
