@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:keep_in_touch/translations.dart';
+import 'package:keep_in_touch/utils/app_state.dart';
 import 'package:keep_in_touch/utils/navigation.dart';
 import 'package:keep_in_touch/utils/theme_utils.dart';
 
@@ -40,5 +41,29 @@ AppBar appBar(
               },
             ),
     ],
+  );
+}
+
+sliverAppBar(AppStateContainerState container) {
+  return SliverAppBar(
+    elevation: 0.2,
+    iconTheme: IconThemeData(color: bottomAppBarColor),
+    backgroundColor: Colors.white,
+    expandedHeight: 256.0,
+    pinned: true,
+    flexibleSpace: new FlexibleSpaceBar(
+      centerTitle: true,
+      title: new Text(
+        "SETTINGS",
+        style: TextStyle(color: strongGreyColor),
+      ),
+      background: Container(
+        child: CircleAvatar(
+          backgroundImage: NetworkImage(container.appState.user.photoUrl),
+          minRadius: 9,
+          maxRadius: 15,
+        ),
+      ),
+    ),
   );
 }

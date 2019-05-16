@@ -32,7 +32,7 @@ navigateToLogin(BuildContext context) {
       (Route<dynamic> route) => false);
 }
 
-navigateToSttings(BuildContext context) {
+navigateToSettings(BuildContext context) {
   Navigator.of(context)
       .push(MaterialPageRoute(builder: (context) => SettingsRoute()));
 }

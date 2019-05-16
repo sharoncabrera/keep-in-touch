@@ -14,9 +14,23 @@ const Color bottomAppBarColor = Color(0xFFB0C0CE);
 
 //const Color ColorsButton = Color(0xFF475993);
 //TextStle
-//final TextStyle longText = TextStyle(
-//    fontFamily: 'Lato',
-//    fontStyle: FontStyle.normal,
-//    fontSize: isBigDevice ? 16.0 : 13.0,
-//    fontWeight: FontWeight.w700,
-//    color: strongGreyColor);
+final TextStyle mainText = TextStyle(
+    fontFamily: 'Lato',
+    fontStyle: FontStyle.normal,
+    fontSize: 16.0,
+    fontWeight: FontWeight.w700,
+    color: strongGreyColor);
+
+final TextStyle regularText = TextStyle(
+    fontFamily: 'Lato',
+    fontStyle: FontStyle.normal,
+    fontSize: 15.0,
+    fontWeight: FontWeight.w500,
+    color: Colors.grey);
+
+final TextStyle hintTextStyle = TextStyle(
+    fontFamily: 'Lato',
+    fontStyle: FontStyle.normal,
+    fontSize: 12.0,
+    fontWeight: FontWeight.normal,
+    color: greyBottomLettersColor);

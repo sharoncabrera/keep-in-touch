@@ -66,11 +66,3 @@ exitDialog({BuildContext context, String title, String message}) {
             fontSize: 22.0,
             fontWeight: FontWeight.w600)),
 * */
-
-void readLocal(User user) async {
-  prefs = await SharedPreferences.getInstance();
-  user.id = prefs.getString('id') ?? '';
-  user.nickname = prefs.getString('nickname') ?? '';
-  user.aboutMe = prefs.getString('aboutMe') ?? '';
-  user.photoUrl = prefs.getString('photoUrl') ?? '';
-}

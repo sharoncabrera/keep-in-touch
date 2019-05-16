@@ -77,7 +77,8 @@ class _MenuChatRouteState extends State<MenuChatRoute> {
                     color: greyBottomLettersColor,
                   ),
                   accountName: Text(container.appState.user.nickname),
-                  accountEmail: Text(container.appState.user.id),
+                  accountEmail:
+                      Text(container.appState.user.aboutMe) ?? Text(""),
                   currentAccountPicture: CircleAvatar(
                     backgroundColor: mainBlueColor,
                     backgroundImage:
@@ -98,6 +99,14 @@ class _MenuChatRouteState extends State<MenuChatRoute> {
                   leading: Icon(Icons.people),
                 ),
                 ListTile(
+                  title: Text("Settings"),
+                  leading: Icon(Icons.settings),
+                  onTap: () {
+                    navigateToSettings(context);
+                    //  exitDialog(context);
+                  },
+                ),
+                ListTile(
                   title: Text("Logout"),
                   leading: Icon(Icons.exit_to_app),
                   onTap: () {
@@ -105,27 +114,10 @@ class _MenuChatRouteState extends State<MenuChatRoute> {
                         context: context, message: "test", title: "Test");
                   },
                 ),
-                ListTile(
-                  title: Text("Settings"),
-                  leading: Icon(Icons.settings),
-                  onTap: () {
-                    //  exitDialog(context);
-                  },
-                ),
               ],
             ),
           ),
           body: getFriendsList(),
-
-//          Center(
-//            child: Container(
-//                child: ListView.builder(
-//              itemCount: mocksUsers.length,
-//              itemBuilder: (context, index) {
-//                return friendWidget(index, context);
-//              },
-//            )),
-//          ),
         ),
       );
 
