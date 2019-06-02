@@ -24,14 +24,12 @@ class SettingsRoute extends StatefulWidget {
 
 class _SettingsRouteState extends State<SettingsRoute> {
   AppStateContainerState container;
-  TextEditingController controllerNickname;
-  TextEditingController controllerAboutMe;
+  final controllerNickname = TextEditingController();
+  final controllerAboutMe = TextEditingController();
   User user;
 
   bool isLoading = false;
 
-  final FocusNode focusNodeNickname = new FocusNode();
-  final FocusNode focusNodeAboutMe = new FocusNode();
 
   bool _value = false;
 
@@ -41,6 +39,14 @@ class _SettingsRouteState extends State<SettingsRoute> {
   void initState() {
     user = User("-1", "", "", "", null);
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    // Clean up the controller when the Widget is disposed
+    controllerNickname.dispose();
+    controllerAboutMe.dispose();
+    super.dispose();
   }
 
   Future getImage() async {
@@ -107,8 +113,10 @@ class _SettingsRouteState extends State<SettingsRoute> {
   }
 
   void handleUpdateData() {
-    focusNodeNickname.unfocus();
-    focusNodeAboutMe.unfocus();
+
+    container.appState.user.aboutMe = controllerAboutMe.text;
+
+    container.appState.user.nickname = controllerNickname.text;
 
     setState(() {
       isLoading = true;
@@ -163,10 +171,6 @@ class _SettingsRouteState extends State<SettingsRoute> {
                 hintStyle: hintTextStyle,
               ),
               controller: controllerNickname,
-              onChanged: (value) {
-                container.appState.user.nickname = value;
-              },
-              focusNode: focusNodeNickname,
             ),
           ),
           margin: EdgeInsets.only(left: 30.0, right: 30.0),
@@ -191,10 +195,6 @@ class _SettingsRouteState extends State<SettingsRoute> {
                 hintStyle: hintTextStyle,
               ),
               controller: controllerAboutMe,
-              onChanged: (value) {
-                container.appState.user.aboutMe = value;
-              },
-              focusNode: focusNodeAboutMe,
             ),
           ),
           margin: EdgeInsets.only(left: 30.0, right: 30.0),
@@ -223,11 +223,11 @@ class _SettingsRouteState extends State<SettingsRoute> {
     user.nickname = prefs.getString('nickname') ?? '';
     user.aboutMe = prefs.getString('aboutMe') ?? '';
     user.photoUrl = prefs.getString('photoUrl') ?? '';
-
+/*
     controllerNickname =
         TextEditingController(text: container.appState.user.nickname);
     controllerAboutMe =
-        TextEditingController(text: container.appState.user.aboutMe);
+        TextEditingController(text: container.appState.user.aboutMe);*/
     // Force refresh input
     setState(() {});
   }
@@ -392,6 +392,7 @@ class _SettingsRouteState extends State<SettingsRoute> {
       ),
     );
   }
+
 
   @override
   Widget build(BuildContext context) {

@@ -11,26 +11,29 @@ class _ChatRoomRouteState extends State<ChatRoomRoute> {
   double height = 0.0;
 
   Widget _getBody() => SafeArea(
-        child: Scaffold(
-          appBar: AppBar(
-            iconTheme: IconThemeData(color: bottomAppBarColor),
-            elevation: 0.2,
-            automaticallyImplyLeading: false,
-            title: Text(
-              "CHAT ROOM",
-              style: TextStyle(color: strongGreyColor),
+        child: WillPopScope(
+          onWillPop: () {},
+          child: Scaffold(
+            appBar: AppBar(
+              iconTheme: IconThemeData(color: bottomAppBarColor),
+              elevation: 0.2,
+              automaticallyImplyLeading: false,
+              title: Text(
+                "CHAT ROOM",
+                style: TextStyle(color: strongGreyColor),
+              ),
+              backgroundColor: Colors.white,
+              centerTitle: true,
             ),
-            backgroundColor: Colors.white,
-            centerTitle: true,
-          ),
-          backgroundColor: greyBackgroundColor,
-          body: Container(
-            height: height - 40.0,
-            color: Colors.white,
-            child: ListView(
-              children: <Widget>[
-                Text("CHAT ROOM"),
-              ],
+            backgroundColor: greyBackgroundColor,
+            body: Container(
+              height: height - 40.0,
+              color: Colors.white,
+              child: ListView(
+                children: <Widget>[
+                  Text("CHAT ROOM"),
+                ],
+              ),
             ),
           ),
         ),

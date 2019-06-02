@@ -67,8 +67,8 @@ class _MenuChatRouteState extends State<MenuChatRoute> {
           backgroundColor: greyBackgroundColor,
           drawer: Drawer(
             elevation: 0.0,
-            child: ListView(
-              shrinkWrap: true,
+            child: Column(
+              //shrinkWrap: true,
               children: <Widget>[
                 UserAccountsDrawerHeader(
                   decoration: BoxDecoration(
@@ -93,6 +93,7 @@ class _MenuChatRouteState extends State<MenuChatRoute> {
                     //  exitDialog(context);
                   },
                 ),
+                Spacer(flex: 1),
                 Divider(
                   height: 5.0,
                 ),
@@ -105,7 +106,7 @@ class _MenuChatRouteState extends State<MenuChatRoute> {
                   },
                 ),
               ],
-              addRepaintBoundaries: false,
+             // addRepaintBoundaries: false,
             ),
           ),
           body: getFriendsList(),
